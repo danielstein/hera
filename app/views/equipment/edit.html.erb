@@ -1,0 +1,22 @@
+<%= nested_form_for @equipment do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :id_place, "ID do Local" %>
+  <%= f.text_field :id_place %>
+
+  <%= f.label :floor, "Andar" %>
+  <%= f.text_field :floor %>
+
+  <%= f.label :equip_type_id, "Tipo do Equipamento" %>
+  <%= f.select(:equip_type_id, options_for_select(@tipos, @tipo)) %>
+
+  <%= f.label :building_id, "Localização" %>
+  <%= f.select(:building_id, options_for_select(@predios, @predio)) %>
+
+  <%= f.label :is_there, "Existe" %>
+  <%= f.select(:is_there, options_for_select(@simnao, @existe)) %> 
+  <br/>
+  <%= f.submit "Salvar" %>
+  
+<%end%>

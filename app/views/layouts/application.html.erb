@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Labsoft</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+</head>
+<body>
+  <%= javascript_include_tag 'rails' %>
+  <%= javascript_include_tag 'jquery-1.11.0.min' %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= render "layouts/main_nav" %>
+  <%= yield %>
+
+</body>
+</html>

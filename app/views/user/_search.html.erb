@@ -1,0 +1,24 @@
+
+<div class="container">
+
+  <%= form_tag(user_index_path, method: "get") do %>
+
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+  <%= form_tag(user_index_path, method: "get") do %>
+  <p> Tipo:
+    <%= select_tag(:user_type, options_for_select([['',0], ['Administrador', 'admin'], ['Estagiário', 'estag']])) %>
+  </p>
+
+
+    <%= submit_tag("Aplicar Filtros")%>
+    <% end %>
+
+</div>
+
+
+

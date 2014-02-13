@@ -1,0 +1,19 @@
+<% 10.times do |n| %>
+estagiario_<%= n %>:
+  nusp: <%= 7777777 - n  %>
+  cpf: <%= 444444444 - n %>
+  name: Estagiario_<%= n %> da Silva
+  password: password<%= n %>
+  kind: estag
+  email: estagiario_<%= n %>@usp.br
+<% end %>
+
+<% 10.times do |n| %>
+admin_<%= n %>:
+  nusp: <%= 5555555 - n  %>
+  cpf: <%= 22222222222 - n %>
+  name: Admin_<%= n %> Souza
+  password: admin<%= n %>
+  kind: admin
+  email: admin_<%= n %>@usp.br
+<% end %>

@@ -1,0 +1,32 @@
+<!--form_tag welcome_index_path, :method => 'get' do -->
+<div class="container">
+	<b>Filtrar perguntas</b>
+  <%= form_tag(checklist_item_index_path, method: "get") do %>
+  <p>
+  Tipo de equipamento:
+    <% equip_type_array = @equip_type_all.map {|etype| [etype.kind]}
+    equip_type_array.unshift(['',''])%>
+    <%= select_tag(:etype, options_for_select(equip_type_array)) %>
+    <br>
+    <label>
+    <input type="checkbox" name="show_deleted" value=1>  Mostrar perguntas removidas
+    </label>
+    <%= submit_tag("Aplicar Filtros")%>
+    <% end %>
+  </p>
+  <b>Criar nova pergunta</b>
+  <%= form_tag(checklist_item_create_path, method: "get") do %>
+  <p>
+  Tipo de equipamento:
+    <% equip_type_array = @equip_type_all.map {|etype| [etype.kind, etype.id]}
+    equip_type_array.unshift(['',''])%>
+    <%= select_tag(:etype, options_for_select(equip_type_array)) %>
+  <br>Pergunta:
+    <%= text_field_tag :texto_da_pergunta, '', :size => 100 %>
+    <%= submit_tag "Criar pergunta", :onclick => "return confirm('Certeza que deseja criar a pergunta?')" %>
+    <% end %>
+  </p>
+
+
+</div>
+<!-- end -->

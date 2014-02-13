@@ -1,0 +1,111 @@
+class EquipmentController < ApplicationController
+
+  def show
+      @equipment = Equipment.find(params[:id]);
+      @inspection = @equipment.inspections.last
+      @answers = @inspection.answers
+
+  end
+
+<<<<<<< HEAD
+  def validate
+    @inspection = Inspection.find(params[:id])
+    @inspection.update_column :approved, 1
+    redirect_to action: :show, id: @inspection.id
+  end
+
+  def disapprove
+    @inspection = Inspection.find(params[:id])
+    @inspection.update_column :approved, 2
+    redirect_to action: :show, id: @inspection.id
+  end
+
+  # GET /complaints
+  # GET /complaints.json
+  def index
+    @inspections = Inspection.all
+
+    @equipments = Equipment.all
+    @equipments = @equipments.where("equip_type_id = ?", params[:etype]) unless params[:etype].blank?
+    @equipments = @equipments.where(building_id: params[:building_id]) unless params[:building_id].blank?
+    @equipments = @equipments.where(%q{equipment.id in (
+                      select B.EquipmentID from (
+                        select T.EquipmentID, T.is_ok from (
+                          select inspections.equipment_id as EquipmentID, answers.is_ok as is_ok from equipment
+                          join inspections on equipment.id=inspections.equipment_id
+                          join answers on answers.inspection_id=inspections.id
+                          join checklist_items on checklist_items.id=answers.checklist_item_id
+                          where question like 'O equipamento est% conservado%'
+                          order by inspections.id desc) as T
+                        group by EquipmentID) as B where B.is_ok = ?)}, params[:conserved_id]) unless params[:conserved_id].blank?
+
+=begin
+    if params[:conserved_id] == "0"
+      @equipments = @equipments.where(%q{equipment.id in (
+                      select B.EquipmentID from (
+                        select T.EquipmentID, T.is_ok from (
+                          select inspections.equipment_id as EquipmentID, answers.is_ok as is_ok from equipment
+                          join inspections on equipment.id=inspections.equipment_id
+                          join answers on answers.inspection_id=inspections.id
+                          join checklist_items on checklist_items.id=answers.checklist_item_id
+                          where question like 'O equipamento est% conservado?%'
+                          order by inspections.id desc) as T
+                        group by EquipmentID) as B where B.is_ok = 0)})
+
+    elsif params[:conserved_id] == "1"
+        @equipments = @equipments.where(%q{equipment.id in (
+                      select B.EquipmentID from (
+                        select T.EquipmentID, T.is_ok from (
+                          select inspections.equipment_id as EquipmentID, answers.is_ok as is_ok from equipment
+                          join inspections on equipment.id=inspections.equipment_id
+                          join answers on answers.inspection_id=inspections.id
+                          join checklist_items on checklist_items.id=answers.checklist_item_id
+                          where question like 'O equipamento est% conservado?%'
+                          order by inspections.id desc) as T
+                        group by EquipmentID) as B where B.is_ok = 1)})
+    end
+=end
+
+    #  @equipments = Equipment.where("equipment.equip_type.type = ?", params[:etype]) pq nao funcionaaaaa?????
+
+    #@equipments = @equipments.where("inspections.last.answers.first.is_ok = ?", params[:conserved_id]) unless params[:conserved_id].blank?
+
+
+
+
+    @equipTypes = EquipType.order("kind").all
+    @users = User.all
+    @buildings = Building.order("name").all
+=======
+  def index
+    respond_to do |format|
+      format.html {
+        @inspections = Inspection.all
+        if params[:etype].blank?
+          @equipments = Equipment.all
+        else
+          @equipments = Equipment.where("equip_type_id = ?", params[:etype])
+        #  @equipments = Equipment.where("equipment.equip_type.type = ?", params[:etype]) pq nao funcionaaaaa?????
+        end
+        @equipTypes = EquipType.all
+        @users = User.all
+
+        #@status = params[:status] || "all"
+        #if @status == "all"
+        #  @inspections = Inspection.all
+        #else
+        #  @inspections = Inspection.where(status: @status)
+      }
+
+      format.json {
+        @equipment = Equipment.all
+      }
+
+>>>>>>> bd_sprint2
+
+
+    end
+  end
+
+
+end

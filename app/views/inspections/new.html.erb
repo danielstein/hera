@@ -1,0 +1,19 @@
+Nova Inspeção
+
+<%= nested_form_for @inspection do |f| %>
+
+  <%= f.label :description, "Descrição" %>
+  <%= f.text_field :description %>
+
+  <%= f.label :equipment_id, "Equipamento" %>
+  <%= f.select(:equipment_id, options_for_select(@equipments, @equipment)) %>
+
+  <%= f.label :photo_url, "URL da Foto" %>
+  <%= f.text_field :photo_url %>
+
+  <%= f.hidden_field 'user_id', :value => current_user.id %>
+  <%= f.hidden_field 'approved', :value => 0 %>
+  <br/>
+  <%= f.submit "Salvar" %>
+  
+<%end%>

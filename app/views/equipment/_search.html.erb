@@ -1,0 +1,24 @@
+
+<div class="container">
+  <%= form_tag(equipment_index_path, method: "get") do %>
+  <p>
+  Predio:
+    <%= building_array = @buildings.map {|building| [building.name, building.id]}
+    building_array.unshift(['',''])
+    select_tag(:building_id, options_for_select(building_array)) %>
+
+  Equipamento:
+    <% equip_type_array = @equipTypes.map {|etype| [etype.kind, etype.id]}
+    equip_type_array.unshift(['',''])%>
+    <%= select_tag(:etype, options_for_select(equip_type_array)) %>
+
+  Estado de Conservação
+    <%= select_tag(:conserved_id, options_for_select([['',''], ['Conservado', 0], ['Não Conservado', 1]])) %>
+
+
+    <%= submit_tag("Aplicar Filtros")%>
+    <% end %>
+  </p>
+
+
+</div>

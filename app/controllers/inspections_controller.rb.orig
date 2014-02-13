@@ -1,0 +1,128 @@
+<<<<<<< HEAD:rails_app/hera/app/controllers/inspection_controller.rb
+class InspectionController < ApplicationController
+
+
+=======
+class InspectionsController < ApplicationController
+>>>>>>> bd_sprint2:rails_app/hera/app/controllers/inspections_controller.rb
+	def show
+		@inspection = Inspection.find(params[:id]);
+		@answers = Answer.where(inspection_id: params[:id])
+
+
+
+	end
+
+	def validate
+		@inspection = Inspection.find(params[:id])
+		@inspection.update_column :approved, 1
+		redirect_to action: :show, id: @inspection.id
+	end
+
+	def disapprove
+		@inspection = Inspection.find(params[:id])
+		@inspection.update_column :approved, 2
+		redirect_to action: :show, id: @inspection.id
+	end
+
+	def index
+		@equip_types = EquipType.order("kind").all
+		@users = User.order("name").where(kind: "estag")
+		@buildings = Building.order("name").all
+
+
+#		query = ""
+#
+#		if !params[:user_id].blank?
+#			if !query.blank?
+#				query += " AND "
+#			end
+#			query += "inspections.user_id =" + params[:user_id]
+#		end
+#
+#		if !params[:etype_id].blank?
+#			if !query.blank?
+#				query += " AND "
+#			end
+#			query += "inspections.equipment_id =" + params[:equip_id]
+#		end
+
+		@inspections = Inspection.where(approved: 0)
+		@inspections = @inspections.where("user_id = ?", params[:user_id]) unless params[:user_id].blank?
+		@inspections = @inspections.joins(:equipment).where(equipment: {equip_type_id: params[:equip_type_id]}) unless params[:equip_type_id].blank?
+		@inspections = @inspections.where("created_at > ?", params[:data1]) unless params[:data1].blank?
+		@inspections = @inspections.where("created_at < ?", params[:data2]) unless params[:data2].blank?
+		@inspections = @inspections.joins(:equipment).where(equipment: {building_id: params[:building_id]}) unless params[:building_id].blank?
+		@inspections = @inspections.where(equipment_id: params[:equipment_id]) unless params[:equipment_id].blank?
+
+
+
+
+
+	end
+
+	def index_history
+		@equip_types = EquipType.order("kind").all
+		@users = User.order("name").where(kind: "estag")
+		@buildings = Building.order("name").all
+
+
+#		query = ""
+#
+#		if !params[:user_id].blank?
+#			if !query.blank?
+#				query += " AND "
+#			end
+#			query += "inspections.user_id =" + params[:user_id]
+#		end
+#
+#		if !params[:etype_id].blank?
+#			if !query.blank?
+#				query += " AND "
+#			end
+#			query += "inspections.equipment_id =" + params[:equip_id]
+#		end
+
+		@inspections = Inspection.where("approved <> 0")
+		@inspections = @inspections.where("user_id = ?", params[:user_id]) unless params[:user_id].blank?
+		@inspections = @inspections.joins(:equipment).where(equipment: {equip_type_id: params[:equip_type_id]}) unless params[:equip_type_id].blank?
+		@inspections = @inspections.where("created_at > ?", params[:data1]) unless params[:data1].blank?
+		@inspections = @inspections.where("created_at < ?", params[:data2]) unless params[:data2].blank?
+		@inspections = @inspections.joins(:equipment).where(equipment: {building_id: params[:building_id]}) unless params[:building_id].blank?
+		@inspections = @inspections.where(approved: params[:approved_id]) unless params[:approved_id].blank?
+		@inspections = @inspections.where(equipment_id: params[:equipment_id]) unless params[:equipment_id].blank?
+	end
+
+
+#	def find_inspections
+#		Inspection.where(conditions)
+#	end
+#
+#	def user_conditions
+#		["inspections.user_id = ?", params[:user_id]] unless params[:user_id].blank?
+#	end
+#
+#	def equip_conditions
+#		["inspections.equipment.equip_type_id = ?", params[:etype_id]] unless params[:etype_id].blank?
+#	end
+
+# 	def conditions
+# 		[conditions_clauses.join(' AND '), *conditions_options]
+# 	end
+
+# 	def conditions_clauses
+# 	  conditions_parts.map { |condition| condition.first }
+# 	end
+
+# 	def conditions_options
+# 	  conditions_parts.map { |condition| condition[1..-1] }.flatten
+# 	end
+
+# 	def conditions_parts
+# 	  private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
+# 	end
+
+
+end
+
+

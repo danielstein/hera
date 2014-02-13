@@ -1,0 +1,6 @@
+<% 5000.times do |n| %>
+answer_<%= n %>:
+  is_ok: <%= n%3 %>
+  inspection: inspecao_<%= n%5000 %>
+  checklist_item: checklist<%= n%100 %>
+<% end %>

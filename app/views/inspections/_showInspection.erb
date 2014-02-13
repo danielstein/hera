@@ -1,0 +1,85 @@
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <td><%= @inspection.id%></td>
+    </tr>
+    <tr>
+        <th>Tipo de Equipamento</th>
+        <td><%= @inspection.equipment.equip_type.kind%></td>
+    </tr>
+    <tr>
+        <th>Localização</th>
+        <td><%= @inspection.equipment.building.name%></td>
+    </tr>
+    <tr>
+        <th>Data da Inspeção</th>
+        <td><%= @inspection.created_at%></td>
+    </tr>
+    <tr>
+        <th>Inspetor</th>
+        <td><%= @inspection.user.name%></td>
+    </tr>
+    <tr>
+        <th>Descrição</th>
+        <td><%= @inspection.description%></td>
+    </tr>
+    <tr>
+        <th>Aprovado?</th>
+        <td> <% if (@inspection.sent ==1)
+                    %><p class="text-muted">Enviado</p><% else
+                if (@inspection.approved == 0)
+                    %><p class="text-muted">Pendente</p><% end
+                if (@inspection.approved == 1)
+                    %><p class="text-muted">Aprovado</p><% end
+                if (@inspection.approved == 2)
+                    %><p class="text-muted">Reprovado</p><% end
+                end
+                %></td>
+    </tr>
+    <tr>
+        <th>Estado de Conservação</th>
+        <td><%= @inspection.answers.first.is_ok%></td>
+    </tr>
+</table>
+
+
+
+<h3>Checklist</h3>
+
+<% if (@inspection.equipment.is_there)  %>
+<table class="table">
+    <% @answers.each do |answer| %>
+        <tr>
+            <td>
+                <%= answer.checklist_item.question %>
+            </td>
+            <td>
+                <% if (answer.is_ok == 0)
+                        %><p class="text-muted">Sim</p><% end
+                    if (answer.is_ok == 1)
+                        %><p class="text-muted">Não</p><% end
+                    if (answer.is_ok == 2)
+                        %><p class="text-muted">Não se aplica</p><%
+                    end
+                %>
+            </td>
+        </tr>
+    <% end else %>
+    <tr>Equipamento não existe</tr>
+    <% end %>
+</table>
+
+<div class="container">
+  <table>
+    <tr>
+        <% if (@inspection.approved == 0) then %>
+       <td>
+            <%= link_to 'Aprovar', { action: :validate, id: @inspection.id },  method: :validate,  :onclick => "return confirm('Certeza que deseja aprovar a inspeção?')", class: "btn btn-success"%></td>
+      <td><%= link_to 'Reprovar', { action: :disapprove, id: @inspection.id },  method: :disapprove,  :onclick => "return confirm('Certeza que deseja reprovar a inspeção?')", class: "btn btn-danger" %></td>
+      <% end %>
+
+    </tr>
+  </table>
+</div>
+
+

@@ -1,0 +1,58 @@
+<h2>Visualização de Equipamento</h2>
+
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <td><%= @equipment.id%></td>
+    </tr>
+     <tr>
+        <th>Nome</th>
+        <td><%= @equipment.name%></td>
+    </tr>
+    <tr>
+        <th>Tipo</th>
+        <td><%= @equipment.equip_type.kind %></td>
+    </tr>
+    <tr>
+        <th>Localização</th>
+        <td><%= @equipment.building.name %></td>
+    </tr>
+     <tr>
+        <th>Andar</th>
+        <td><%= @equipment.floor%></td>
+    </tr>
+     <tr>
+        <th>ID do Local no Atlas</th>
+        <td><%= @equipment.id_place%></td>
+    </tr>
+    <tr>
+        <th>Existe</th>
+        <td>
+            <% if (@equipment.is_there)
+                    %>Sim<%
+                else %>Não<%
+                end
+            %>
+
+        <td>
+    </tr>
+</table>
+
+
+
+<h3>Última Inspeção</h3>
+
+<%= render :partial => 'showInspection' %>
+
+<table>
+    <tr>
+      <td><%= link_to "Ver inspecoes anteriores", inspections_index_history_path(:equipment_id => @equipment.id), class: "btn btn-default", method: "get"%></td>
+    </tr>
+  </table>
+</div>
+
+<br>
+<div class="container">
+<img src="<%= @inspection.photo_url%>" class="img-rounded">
+</div>

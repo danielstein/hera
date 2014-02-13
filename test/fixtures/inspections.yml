@@ -1,0 +1,11 @@
+<% approved = [true, false] %>
+
+<% 600.times do |n| %>
+inspecao_<%= n %>:
+  photo_url: about:blank
+  user: estagiario_<%= n%10 %>
+  equipment: equip_<%= n%500 %>
+  description: test_description_<%= n%1000 %>
+  approved: <%= n%3 %>
+<% end %>
+

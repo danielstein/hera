@@ -1,0 +1,13 @@
+<%= nested_form_for @user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :nusp, "Número USP" %>
+  <%= f.text_field :nusp %>
+
+  <%= f.label :cpf, "CPF" %>
+  <%= f.text_field :cpf %>
+
+  <br/>
+  <%= f.submit "Salvar" %>
+<%  end %>

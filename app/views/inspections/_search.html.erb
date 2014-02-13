@@ -1,0 +1,30 @@
+<!--form_tag welcome_index_path, :method => 'get' do -->
+<div class="container">
+  <%= form_tag(inspections_path, method: "get") do %>
+  <p> Predio:
+    <%= building_array = @buildings.map {|building| [building.name, building.id]}
+    building_array.unshift(['',''])
+    select_tag(:building_id, options_for_select(building_array)) %>
+
+   Data da inspeção: <input type="text" name="data1" placeholder="dd/mm/aa" size="10"> a <input type="text" name="data2" placeholder="dd/mm/aa" size="10">
+  </p>
+  <p>
+    
+  Estagiário:
+      <% user_array = @users.map {|user| [user.name, user.id]} 
+    user_array.unshift(['',''])%>
+    <%= select_tag(:user_id, options_for_select(user_array)) %>
+
+  Equipamento:
+    <% equip_type_array = @equip_types.map {|equip_type| [equip_type.kind, equip_type.id]} 
+    equip_type_array.unshift(['',''])%>
+    <%= select_tag(:equip_type_id, options_for_select(equip_type_array)) %>
+
+
+  </p>
+    <%= submit_tag("Aplicar Filtros")%>
+    <% end %>
+
+</div>
+
+<!-- end -->
