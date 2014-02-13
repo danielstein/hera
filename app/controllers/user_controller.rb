@@ -15,6 +15,12 @@ class UserController < ApplicationController
   
   def edit
     @user = User.find params[:id]
+    @roles = [["Administrador/Aprovador","admin"],["Normal","normal"]]
+    @role = @user.kind
+    
+    if (@role.nil?) 
+      @role = "normal"
+    end
   end
   
   def update
@@ -25,7 +31,7 @@ class UserController < ApplicationController
   end
   
   def userdata_params
-    params.require(:user).permit(:name,:nusp,:cpf)
+    params.require(:user).permit(:name,:nusp,:cpf,:kind)
   end
   
 end
