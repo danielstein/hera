@@ -1,6 +1,15 @@
-Checklist
+<h1>Questionário</h1>
+<hr>
 
 <%= nested_form_for @inspection do |f| %>
 
+<% @questions.each do |id, question| %>
 
-<%end%>
+  <%= label_tag question, question %>
+  <%= select('answers', id, @answertypes, :selected => @answer_data.where(checklist_item_id: id).first.try(:is_ok)) %>
+
+<% end %>
+
+<%= f.submit "Salvar", :class => "btn default-button"%>
+
+<% end %>

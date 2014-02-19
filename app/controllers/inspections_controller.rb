@@ -34,10 +34,33 @@ class InspectionsController < ApplicationController
   
   def edit
     @inspection = Inspection.find(params[:id])
+    @questions = @inspection.equipment.equip_type.checklist_items.collect{|p| [p.id, p.question] }
+    @answertypes = [["Sim",0],["Não",1], ["Não se Aplica",2]]
+    
+    @answer_data = Answer.where(inspection_id: params[:id])
+    
+    @answer_test = @answer_data.where(checklist_item_id: 29)
+
   end
   
   def update
-    
+    inspection = Equipment.find params[:id]
+    answer_data = params[:answers]
+    answer_data.each do |answer|
+      answer_db = Answer.where(inspection_id: inspection.id, checklist_item_id: answer[0])
+      answer_db = answer_db.first #passa de relation para o objeto que precisamos
+      if (answer_db.nil?)
+        answer_db = Answer.new
+        answer_db.inspection_id = inspection.id
+        answer_db.checklist_item_id = answer[0]
+        answer_db.is_ok = answer[1]
+        answer_db.save
+      else
+        answer_db.is_ok = answer[1]
+        answer_db.save
+      end
+    end
+    redirect_to inspection_path id: inspection.id
   end
 
 	def index
@@ -74,5 +97,8 @@ class InspectionsController < ApplicationController
     params.require(:inspection).permit(:photo_url,:user_id,:equipment_id,:description,:approved)
   end
 
+  def answers_params
+    params.require(:inspection).permit(answers_attributes[:is_ok])
+  end
 
 end
