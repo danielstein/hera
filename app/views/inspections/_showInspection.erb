@@ -51,7 +51,11 @@
     <% @answers.each do |answer| %>
         <tr>
             <td>
-                <%= answer.checklist_item.question %>
+                <% if !answer.checklist_item.nil? %>
+                  <%= answer.checklist_item.question %>
+                <%  else %>
+                  !PERGUNTA REMOVIDA!
+                <% end %>
             </td>
             <td>
                 <% if (answer.is_ok == 0)

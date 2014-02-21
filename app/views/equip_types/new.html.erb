@@ -1,0 +1,13 @@
+<%= nested_form_for @equiptype do |f| %>
+  <%= f.label :kind, "Nome" %>
+  <%= f.text_field :kind %>
+
+  <%= f.fields_for :checklist_items do |task_form| %>
+    <%= task_form.label :question, "Pergunta" %><%= task_form.text_field :question %>
+    <%= task_form.link_to_remove "Remover Pergunta" %>
+  <% end %>
+  <p><%= f.link_to_add "Nova Pergunta", :checklist_items %></p>
+  <br/>
+  <%= f.submit "Criar" %>
+  
+<%end%>

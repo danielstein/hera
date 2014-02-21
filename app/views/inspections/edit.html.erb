@@ -9,7 +9,7 @@
   <%= select('answers', id, @answertypes, :selected => @answer_data.where(checklist_item_id: id).first.try(:is_ok)) %>
 
 <% end %>
-
+<br/>
 <%= f.submit "Salvar", :class => "btn default-button"%>
 
 <% end %>

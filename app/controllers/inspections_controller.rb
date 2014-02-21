@@ -29,7 +29,7 @@ class InspectionsController < ApplicationController
     inspection = Inspection.new
     inspection.update_attributes(inspection_params)
     inspection.save
-    redirect_to inspection_edit_path
+    redirect_to edit_inspection_path(inspection.id)
   end
   
   def edit
@@ -44,20 +44,20 @@ class InspectionsController < ApplicationController
   end
   
   def update
-    inspection = Equipment.find params[:id]
+    inspection = Inspection.find params[:id]
     answer_data = params[:answers]
     answer_data.each do |answer|
       answer_db = Answer.where(inspection_id: inspection.id, checklist_item_id: answer[0])
-      answer_db = answer_db.first #passa de relation para o objeto que precisamos
-      if (answer_db.nil?)
-        answer_db = Answer.new
-        answer_db.inspection_id = inspection.id
-        answer_db.checklist_item_id = answer[0]
-        answer_db.is_ok = answer[1]
-        answer_db.save
+      answer_db_data = answer_db.first #passa de relation para o objeto que precisamos
+      if (answer_db_data.nil?)
+        answer_new = Answer.new
+        answer_new.inspection_id = inspection.id
+        answer_new.checklist_item_id = answer[0]
+        answer_new.is_ok = answer[1]
+        answer_new.save
       else
-        answer_db.is_ok = answer[1]
-        answer_db.save
+        answer_db_data.is_ok = answer[1]
+        answer_db_data.save
       end
     end
     redirect_to inspection_path id: inspection.id
