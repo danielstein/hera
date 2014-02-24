@@ -2,7 +2,6 @@
   <%= render :partial => 'search_history' %>
 </div>
 
-<td><i><%= link_to "Nova Inspeção", new_inspection_path %></i>
 
 <table class="table table-striped table-hover">
     <tr>
@@ -56,3 +55,4 @@
     <% end -%>
 </table>
 
+<td><i><%= link_to "Nova Inspeção", new_inspection_path %></i>

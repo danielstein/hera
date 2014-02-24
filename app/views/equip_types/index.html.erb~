@@ -1,5 +1,3 @@
-<i><%= link_to "Adicionar equipamento", new_equipment_path %></i>
-
 <table class="table table-striped table-hover">
   <tr>
     <th>Tipo de Equipamento</th>
@@ -14,3 +12,5 @@
   <% end -%>
 
 </table>
+
+<i><%= link_to "Adicionar equipamento", new_equipment_path %></i>
