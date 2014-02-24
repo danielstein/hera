@@ -1,0 +1,37 @@
+<div class="navbar navbar-inverse navbar-fixed-top main-nav">
+  <div class="navbar-inner mainnav">
+    <div class="container-fluid">
+      <%= image_tag "header_logo.png", class: "logo" %>
+      <a href="<%= root_path %>" class="brand">
+        legal
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? -%>	
+<div class="row-fluid">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Gerenciamento</a>
+        <ul class="nav">
+          <li class="<%= "active" if @status == "all" %>">
+            <%= link_to "Equipamentos", equipment_index_path%>
+          </li>
+          <li class="<%= "active" if @status == "Não Analisado" %>">
+            <%= link_to "Inspeções Pendentes", inspections_path%>
+          </li>
+          <li class="<%= "active" if @status == "Analisado" %>">
+            <%= link_to "Inspeções Antigas", inspections_index_history_path%>
+          </li>
+          <li class="<%= "active" if @status == "Aceito" %>">
+            <%= link_to "Usuários", user_index_path%>
+          </li>
+          <li>
+          <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+          </li>
+        </ul>
+      </div>
+    </div>
+<% end -%>

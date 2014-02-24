@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+# Classier solution for file uploads for Rails, Sinatra and other Ruby web frameworks
+gem 'carrierwave'
+
 #Use postgre as the database for web service
 gem 'pg'
 

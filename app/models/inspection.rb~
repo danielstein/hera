@@ -5,6 +5,5 @@ class Inspection < ActiveRecord::Base
   
 	validates :photo_url, presence: true
 
-	#mount_uploader :picture, PictureUploader
-	mount_uploader :photo_url, PictureUploader
+	mount_uploader :picture, PictureUploader
 end

@@ -9,7 +9,7 @@ development:
   database: hera_development
   pool: 5
   username: root
-  password: a1a2a3a4
+  password: root
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,7 +20,7 @@ test:
   database: hera_test
   pool: 5
   username: root
-  password: a1a2a3a4
+  password: root
 
 production:
   adapter: mysql2
@@ -28,5 +28,5 @@ production:
   database: hera_production
   pool: 5
   username: root
-  password: a1a2a3a4
+  password:	root
 

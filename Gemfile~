@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+#
+gem 'carrierwave'
+
 #Use postgre as the database for web service
 gem 'pg'
 
@@ -29,7 +32,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'libv8'
-gem 'therubyracer',  '0.11.2' , :platform => :ruby
+gem 'therubyracer', :platform => :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -59,3 +62,4 @@ end
 
 # Extra Gems
 gem 'nested_form'
+gem 'devise'
