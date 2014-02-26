@@ -36,10 +36,6 @@
                 end
                 %></td>
     </tr>
-    <tr>
-        <th>Estado de Conservação</th>
-        <td><%= @inspection.answers.first.is_ok%></td>
-    </tr>
 </table>
 
 
@@ -48,6 +44,9 @@
 
 <% if (@inspection.equipment.is_there)  %>
 <table class="table">
+    <% if @answers.size == 0 %>
+      Nenhuma pergunta foi respondida.
+    <% end %>
     <% @answers.each do |answer| %>
         <tr>
             <td>
@@ -76,10 +75,17 @@
 <div class="container">
   <table>
     <tr>
-        <% if (@inspection.approved == 0) then %>
-       <td>
-            <%= link_to 'Aprovar', { action: :validate, id: @inspection.id },  method: :validate,  :onclick => "return confirm('Certeza que deseja aprovar a inspeção?')", class: "btn btn-success"%></td>
-      <td><%= link_to 'Reprovar', { action: :disapprove, id: @inspection.id },  method: :disapprove,  :onclick => "return confirm('Certeza que deseja reprovar a inspeção?')", class: "btn btn-danger" %></td>
+      <% if (@inspection.approved == 0) then %>
+      <% if (current_user.kind == "admin") %>
+      <td>
+        <%= link_to 'Aprovar', { action: :validate, id: @inspection.id },  method: :validate,  :onclick => "return confirm('Certeza que deseja aprovar a inspeção?')", class: "btn btn-success"%>
+      </td>
+      <td>
+        <%= link_to 'Reprovar', { action: :disapprove, id: @inspection.id },  method: :disapprove,  :onclick => "return confirm('Certeza que deseja reprovar a inspeção?')", class: "btn btn-danger" %>
+      </td>
+      <% else %>
+        Apenas Adminstradores podem aprovar ou reprovar inspeções!
+      <% end %>
       <% end %>
 
     </tr>

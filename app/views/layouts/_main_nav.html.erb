@@ -14,7 +14,7 @@
 <div class="row-fluid">
     <div class="navbar">
       <div class="navbar-inner">
-        <a class="brand" href="#">Gerenciamento</a>
+        <a class="brand" href="/">Gerenciamento</a>
         <ul class="nav">
           <li class="<%= "active" if @status == "all" %>">
             <%= link_to "Equipamentos", equipment_index_path%>
@@ -32,12 +32,9 @@
             <%= link_to "Usuários", user_index_path%>
           </li>
           
-          <li>
-						<div id="user_login_box" style="float:right">
-          		<%= current_user.email %> |
-          		<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-        		</div>
-          </li>
+              <li>
+                 <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+              </li>
         </ul>
       </div>
     </div>

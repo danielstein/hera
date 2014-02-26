@@ -13,7 +13,6 @@
         <th>Estagiário</th>
         <th>Aprovado</th>
         <th></th>
-        <th></th>
     </tr>
     <% @inspections.each do |insp| %>
         <tr>
@@ -48,9 +47,6 @@
             <td>
                     <%= link_to "Visualizar", insp  %>
 
-            </td>
-            <td>
-              <%= link_to "Questionário", edit_inspection_path(:id => insp.id) %>
             </td>
         </tr>
     <% end -%>
