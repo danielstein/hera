@@ -14,6 +14,14 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/uploads/*
+public/138.css
+public/404.html
+public/422.html
+public/500.html
+public/favicon.ico
+public/javascripts
+public/robots.txt
 public/uploads
 public/uploads/inspection
 public/uploads/tmp
