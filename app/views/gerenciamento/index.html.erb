@@ -1,5 +1,5 @@
 <h2>Gerenciamento do Sistema Hera</h2>
-<h5>Bem Vindo, <%= current_user.name %> (<%= current_user.email %>)!</h5>
+<h5>Bem Vindo, <%= current_user.try(:name) %> (<%= current_user.try(:email) %>)!</h5>
 <hr>
 <h4>Inspeções</h4>
 <i><%= link_to "Nova Inspeção", new_inspection_path %></i>

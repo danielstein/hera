@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204160026) do
+ActiveRecord::Schema.define(version: 20140311165229) do
 
   create_table "answers", force: true do |t|
     t.integer  "is_ok"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20140204160026) do
     t.string   "description"
     t.integer  "approved"
     t.integer  "sent"
+  end
+
+  create_table "uploads", force: true do |t|
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "answer_id"
   end
 
   create_table "users", force: true do |t|

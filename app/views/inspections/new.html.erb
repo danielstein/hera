@@ -1,6 +1,6 @@
 <b>Nova Inspeção</b>
 
-<%= nested_form_for @inspection do |f| %>
+<%= nested_form_for @inspection, :html => {:multipart => true} do |f| %>
 	<br>
   <%= f.label :description, "Descrição" %>
   <%= f.text_field :description %>

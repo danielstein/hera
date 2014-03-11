@@ -67,6 +67,13 @@
                 %>
             </td>
         </tr>
+        <tr>
+          <td colspan="2">
+           <% answer.upload.each do |upload| %>
+            <%= image_tag upload.photo.url %>
+          <% end %>
+          </td>
+        </tr>
     <% end else %>
     <tr>Equipamento não existe</tr>
     <% end %>

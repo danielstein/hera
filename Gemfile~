@@ -63,4 +63,3 @@ end
 # Extra Gems
 gem 'nested_form'
 gem 'devise'
-gem 'paperclip'
