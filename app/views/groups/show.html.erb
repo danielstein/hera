@@ -1,0 +1,25 @@
+Visualizando Grupo de Inspeção <%= @group.name %>
+<hr>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Nome</th>
+        <th></th>
+    </tr>
+    <%if @inspections.size == 0 %>
+      <tr>
+            <td>
+               Nenhuma inspeção
+            </td>                           
+            <td> </td>
+        </tr>
+    <% end %>
+    <% @inspections.each do |inspection| %>
+        <tr>
+            <td>
+               <%= inspection.description %>
+            </td>
+                           
+            <td><%= link_to "Visualizar", inspection %> </td>
+        </tr>
+    <% end -%>
+</table>

@@ -4,6 +4,11 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
   
+  def show
+    @group = Group.find(params[:id])
+    @inspections = Inspection.where('group_id = ' + params[:id]).order("created_at DESC")
+  end
+  
   def new
     @group = Group.new
   end

@@ -10,7 +10,7 @@ Lista de Grupos de Inspeções
     <% @groups.each do |group| %>
         <tr>
             <td>
-               <%= group.name %>
+               <%= link_to group.name, group %>
             </td>
                            
             <td><%= link_to "Editar", edit_group_path(:id => group.id) %>
