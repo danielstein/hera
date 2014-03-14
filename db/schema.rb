@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311165229) do
+ActiveRecord::Schema.define(version: 20140314132226) do
 
   create_table "answers", force: true do |t|
     t.integer  "is_ok"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140311165229) do
     t.datetime "updated_at"
     t.integer  "inspection_id"
     t.integer  "checklist_item_id"
+    t.string   "comment"
   end
 
   create_table "buildings", force: true do |t|
@@ -54,6 +55,12 @@ ActiveRecord::Schema.define(version: 20140311165229) do
     t.string   "id_place"
   end
 
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "inspections", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -63,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140311165229) do
     t.string   "description"
     t.integer  "approved"
     t.integer  "sent"
+    t.integer  "group_id"
   end
 
   create_table "uploads", force: true do |t|

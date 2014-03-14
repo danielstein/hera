@@ -38,6 +38,8 @@ Hera::Application.routes.draw do
   get "inspections/validate"
   resources :inspections
   
+  resources :groups
+  
   resources :user
   
   resources :equip_types

@@ -1,0 +1,19 @@
+Lista de Grupos de Inspeções
+<br/>
+<td><i><%= link_to "Adicionar Grupo", new_group_path %></i>
+<br/>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Nome</th>
+        <th></th>
+    </tr>
+    <% @groups.each do |group| %>
+        <tr>
+            <td>
+               <%= group.name %>
+            </td>
+                           
+            <td><%= link_to "Editar", edit_group_path(:id => group.id) %>
+        </tr>
+    <% end -%>
+</table>

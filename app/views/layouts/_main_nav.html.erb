@@ -17,16 +17,20 @@
         <a class="brand" href="/">Gerenciamento</a>
         <ul class="nav">
           <li class="<%= "active" if @status == "all" %>">
-            <%= link_to "Equipamentos", equipment_index_path%>
+            <%= link_to "Grupos de Inspeções", groups_path%>
           </li>
           <li class="<%= "active" if @status == "all" %>">
-            <%= link_to "Tipos de Equipamento", equip_types_path%>
+            <%= link_to "Ítem de Inspeção", equipment_index_path%>
           </li>
+          
           <li class="<%= "active" if @status == "Não Analisado" %>">
             <%= link_to "Inspeções Pendentes", inspections_path%>
           </li>
           <li class="<%= "active" if @status == "Analisado" %>">
             <%= link_to "Inspeções Antigas", inspections_index_history_path%>
+          </li>
+          <li class="<%= "active" if @status == "all" %>">
+            <%= link_to "Tipos de Item", equip_types_path%>
           </li>
           <li class="<%= "active" if @status == "Aceito" %>">
             <%= link_to "Usuários", user_index_path%>

@@ -7,6 +7,7 @@
 <table class="table table-striped table-hover">
     <tr>
         <th></th>
+        <th>Grupo</th>
         <th>Equipamento</th>
         <th>Localização</th>
         <th>Data da Inspeção</th>
@@ -19,6 +20,9 @@
         <tr>
             <td>
                <%= insp.id %>
+            </td>
+            <td>
+               <%= insp.group.try(:name) %>
             </td>
             <td>
                 <%= insp.equipment.name %> (<%= insp.equipment.equip_type.kind %>)

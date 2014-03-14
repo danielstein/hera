@@ -4,6 +4,6 @@ class AddAnswerIdToUpload < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :uploads, :answer_id, :integer
+    remove_column :uploads, :answer_id
   end
 end

@@ -7,8 +7,11 @@
 
   <%= f.label :equipment_id, "Equipamento" %>
   <%= f.select(:equipment_id, options_for_select(@equipments, @equipment)) %>
+        
+  <%= f.label :group_id, "Grupo Da Inspeção"%>
+  <%= f.collection_select :group_id, Group.all, :id, :name %>      
 
-  <%= f.label :photo_url, "Escolha uma foto" %>
+  <%= f.label :photo_url, "Escolha uma foto geral para a inspeção (se aplicável)" %>
   <%= f.file_field :photo_url %>
 
   <%= f.hidden_field 'user_id', :value => current_user.id %>

@@ -3,6 +3,9 @@
 
 <%= form_for @inspection, :html => {:multipart => :true } do |f| %>
 
+<%= f.label :group_id, "Grupo Da Inspeção"%>
+<%= f.collection_select :group_id, Group.all, :id, :name %>
+<hr>
 <% @questions.each do |id, question, q| %>
 
   <%= label_tag question, question %>
@@ -10,6 +13,9 @@
 
   <%= label_tag "foto" ,"Escolha fotos para esta pergunta" %>
   <%= file_field :photos, id, :multiple => true %>
+
+  <%= label_tag "comment", "Comentário" %>
+  <%= text_area_tag "comment_" + id.to_s, @answer_data.where(checklist_item_id: id).first.try(:comment) %>
 
 <hr>
 

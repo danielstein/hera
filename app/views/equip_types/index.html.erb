@@ -1,15 +1,15 @@
-<i><%= link_to "Adicionar equipamento", new_equipment_path %></i>
+<i><%= link_to "Adicionar Tipo", new_equip_type_path %></i>
 
 <table class="table table-striped table-hover">
   <tr>
-    <th>Tipo de Equipamento</th>
+    <th>Tipo de Ítem</th>
     <th></th>
   </tr>
 
   <% @equiptypelist.each do |et| %>
     <tr>
       <td><%= et.kind %></td>
-      <td><%=  link_to "Editar Questionário", edit_equip_type_path(et.id)%></td>
+      <td><%=  link_to "Editar", edit_equip_type_path(et.id)%></td>
     </tr>
   <% end -%>
 

@@ -1,9 +1,13 @@
 
 
-<table class="table">
+<table class="table">    
     <tr>
         <th>ID</th>
         <td><%= @inspection.id%></td>
+    </tr>
+    <tr>
+        <th>Grupo</th>
+        <td><%= @inspection.group.try(:name)%></td>
     </tr>
     <tr>
         <th>Tipo de Equipamento</th>

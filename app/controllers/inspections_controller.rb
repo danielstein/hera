@@ -57,18 +57,25 @@ class InspectionsController < ApplicationController
   
   def update
     inspection = Inspection.find params[:id]
+    inspection.group_id = params[:inspection][:group_id]
+    inspection.save
     answer_data = params[:answers]
     answer_data.each do |answer|
       answer_db = Answer.where(inspection_id: inspection.id, checklist_item_id: answer[0])
       answer_db_data = answer_db.first #passa de relation para o objeto que precisamos
       
-      photo_data = params[:photos][answer[0]]
+      photo_data = nil
+      
+      if (!params[:photos].nil?)
+        photo_data = params[:photos][answer[0]]
+      end
       
       if (answer_db_data.nil?)
         answer_new = Answer.new
         answer_new.inspection_id = inspection.id
         answer_new.checklist_item_id = answer[0]
-        answer_new.is_ok = answer[1]        
+        answer_new.is_ok = answer[1]
+        answer_new.comment = params["comment_" + answer[0].to_s]
         answer_new.save
         
         #upload!
@@ -81,7 +88,8 @@ class InspectionsController < ApplicationController
           end
         end
       else
-        answer_db_data.is_ok = answer[1]        
+        answer_db_data.is_ok = answer[1]
+        answer_db_data.comment = params["comment_" + answer[0].to_s]
         answer_db_data.save
         
         #upload!
@@ -128,7 +136,7 @@ class InspectionsController < ApplicationController
 	end
   
   def inspection_params
-    params.require(:inspection).permit(:photo_url,:user_id,:equipment_id,:description,:approved)
+    params.require(:inspection).permit(:photo_url,:user_id,:equipment_id,:description,:group_id,:approved)
   end
 
   def answers_params

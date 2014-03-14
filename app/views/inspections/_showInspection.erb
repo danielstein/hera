@@ -52,6 +52,7 @@
             <td>
                 <% if !answer.checklist_item.nil? %>
                   <%= answer.checklist_item.question %>
+                  <br/>                                 
                 <%  else %>
                   !PERGUNTA REMOVIDA!
                 <% end %>
@@ -69,13 +70,19 @@
         </tr>
         <tr>
           <td colspan="2">
+           <% if !answer.comment.nil? %>
+                    <%= answer.comment%>
+                  <% else %>
+                    Nenhum comentário.
+                  <% end %>   
+                  <br/>
            <% answer.upload.each do |upload| %>
             <%= image_tag upload.photo.url %>
           <% end %>
           </td>
         </tr>
     <% end else %>
-    <tr>Equipamento não existe</tr>
+    <tr>Ítem de Inspeção não existe</tr>
     <% end %>
 </table>
 
