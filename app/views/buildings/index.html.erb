@@ -1,0 +1,23 @@
+Lista de Prédios
+<br/>
+<td><i><%= link_to "Adicionar Prédio", new_building_path %></i>
+<br/>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Nome</th>
+        <th>ID Atlas</th>
+        <th></th>
+    </tr>
+    <% @blds.each do |bld| %>
+        <tr>
+            <td>
+               <%= label "", bld.name, "" %>
+            </td>
+            <td>
+               <%= label "", bld.idAtlas, "" %>
+            </td>
+                           
+            <td><%= link_to "Editar", edit_building_path(:id => bld.id) %>
+        </tr>
+    <% end -%>
+</table>

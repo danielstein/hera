@@ -1,0 +1,11 @@
+<%= nested_form_for @bld do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :idAtlas, "ID Atlas" %>
+  <%= f.text_field :idAtlas %>'
+
+  <br/>
+  <%= f.submit "Criar" %>
+  
+<%end%>

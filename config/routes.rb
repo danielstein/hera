@@ -40,6 +40,8 @@ Hera::Application.routes.draw do
   
   resources :groups
   
+  resources :buildings
+  
   resources :user
   
   resources :equip_types
